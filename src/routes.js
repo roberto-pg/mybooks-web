@@ -1,19 +1,36 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
+import { isAuthenticated } from '../src/services/auth';
 
 import Logon from './pages/Logon';
 import Register from './pages/Register';
-import Profile from './pages/Profile';
-import NewIncident from './pages/NewIncident';
+import Library from './pages/Library';
+import NewBook from './pages/NewBook';
+
+export function PrivateRoute({ component: Component, ...rest }) {
+    return (
+        <Route {...rest} render={props => (
+            isAuthenticated() ? (
+                <Component {...props} />
+            ) : (
+                    <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+                )
+        )} />
+    )
+}
 
 export default function Routes() {
     return (
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Logon} />
-                <Route path="/register" component={Register} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/incidents/new" component={NewIncident} />
+                {/* <Route path="/register" component={Register} /> */}
+                <PrivateRoute path="/register" component={Register} />
+                {/* <Route path="/profile" component={Profile} /> */}
+                <PrivateRoute path="/library" component={Library} />
+                {/* <Route path="/incidents/new" component={NewIncident} /> */}
+                <PrivateRoute path="/books/new" component={NewBook} />
             </Switch>
         </BrowserRouter>
     );

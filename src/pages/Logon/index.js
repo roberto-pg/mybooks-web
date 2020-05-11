@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 
+import { login } from '../../services/auth';
 import api from '../../services/api';
 import './styles.css';
 
@@ -11,7 +11,7 @@ import capaImg from '../../assets/capa.jpg';
 export default function Logon() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const history = useHistory();
 
     async function handleLogon(e) {
         e.preventDefault();
@@ -22,12 +22,17 @@ export default function Logon() {
 
         try {
             const response = await api.post('authenticate', data)
+            login(response.data.token);
 
-            alert('Ok')
-            console.log(response.data.token);
+            history.push('/library');
+            alert(`Você está logado como: ${email}`)
         } catch (err) {
 
-            alert('NO')
+            if (err.response.data.error) {
+                alert(err.response.data.error)
+            } else {
+                alert('Email inválido')
+            }
         }
 
     }
@@ -55,11 +60,6 @@ export default function Logon() {
                         onChange={e => setPassword(e.target.value)}
                     />
                     <button className="button" type="submit">Entrar</button>
-
-                    <Link className="back-link" to="/register">
-                        <FiLogIn size={16} color="#e02041" />
-                        Não tenho cadastro
-                    </Link>
                 </form>
             </section>
 

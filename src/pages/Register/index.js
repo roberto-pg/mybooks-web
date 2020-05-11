@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
+import { logout } from '../../services/auth';
 import './styles.css';
 
 import logoImg from '../../assets/logo.png';
@@ -22,6 +23,8 @@ export default function Register() {
 
         try {
             const response = await api.post('users', data);
+            logout();
+
 
             alert(`Cadastro efetuado com sucesso\nPara acesso utilize o email: ${response.data.user.email}`);
             history.push('/');
@@ -40,9 +43,9 @@ export default function Register() {
                     <h1>Cadastro</h1>
                     <p>Efetue o cadastro para acessar o sistema</p>
 
-                    <Link className="back-link" to="/">
+                    <Link className="back-link" to="/library">
                         <FiArrowLeft size={16} color="#e02041" />
-                        Voltar para Logon
+                        Voltar para Minha Estante
                     </Link>
                 </section>
 
