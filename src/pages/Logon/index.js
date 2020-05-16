@@ -16,9 +16,7 @@ export default function Logon() {
     async function handleLogon(e) {
         e.preventDefault();
 
-        const data = ({
-            email, password
-        })
+        const data = ({ email, password })
 
         try {
             const response = await api.post('authenticate', data)
@@ -27,20 +25,14 @@ export default function Logon() {
             history.push('/library');
             alert(`Você está logado como: ${email}`)
         } catch (err) {
-
-            if (err.response.data.error) {
-                alert(err.response.data.error)
-            } else {
-                alert('Email inválido')
-            }
+            alert(err)
         }
-
     }
 
     return (
         <div className="logon-container">
             <section className="form">
-                <img src={logoImg} alt="Logo" />
+                <img className="log" src={logoImg} alt="Logo" />
                 <form onSubmit={handleLogon}>
                     <h1>Faça seu Logon</h1>
                     <input

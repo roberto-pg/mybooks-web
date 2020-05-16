@@ -8,6 +8,10 @@
     justify-content: space-between;
 }
 
+.log {
+    width: 100%;
+}
+
 .logon-container section.form {
     width: 100%;
     max-width: 350px;
@@ -18,7 +22,7 @@
     margin-top: 80px;
 }
 
-.logon-container section.form form input + input {
+.logon-container section.form form input+input {
     margin-top: 8px;
 }
 

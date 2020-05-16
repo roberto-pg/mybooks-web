@@ -1,0 +1,114 @@
+.detail-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-container .content {
+    width: 100%;
+    padding: 50px 50px;
+    background: #f0f0f5;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-container .content .secImg {
+    width: 100%;
+    max-width: 320px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: lightcoral; */
+}
+
+.detail-container .content .secImg .livro {
+    width: 100%;
+    max-width: 300px;
+}
+
+.detail-container .content .secDados {
+    width: 100%;
+    max-width: 640px;
+    height: 500px;
+    /* background-color: lightcoral; */
+}
+
+.dados {
+    padding-top: 20px;
+}
+
+.dados p {
+    padding-bottom: 40px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.dados .status {
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.detail-container .content .secDados .alterar {
+    padding-top: 20px;
+    display: flex;
+}
+
+.alterar .detail {
+   margin-right: 45px;
+   margin-left: 20px;
+    width: 120px;
+    height: 60px;
+    background: #f49e00;
+    /* background: #e02041; */
+    border: 0;
+    
+    border-radius: 8px;
+    font-weight: 700;
+    margin-top: 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    transition: filter 0.2s;
+    cursor: pointer;
+}
+
+.alterar .detail:hover {
+    filter: brightness(90%);
+}
+
+.alterar .delete {
+    width: 120px;
+    height: 60px;
+    background: #f49e00;
+    /* background: #e02041; */
+    border: 0;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    transition: filter 0.2s;
+    cursor: pointer;
+}
+
+.alterar .delete:hover {
+    filter: brightness(90%);
+}
+
+.back-link {
+margin-left: 20px;
+}

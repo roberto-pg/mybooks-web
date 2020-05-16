@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -8,29 +8,27 @@ import './styles.css';
 import logoImg from '../../assets/logo.png';
 
 export default function NewBook() {
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [nationality, setNationality] = useState('');
-    const [year, setYear] = useState('');
-    const read = false;
 
     async function handleBook(e) {
         e.preventDefault();
 
-        const data = ({
-            title,
-            author,
-            nationality,
-            year,
-            read,
-        });
+        var myForm = document.getElementById('myForm');
+        var formData = new FormData(myForm);
 
         try {
-            const response = await api.post('books', data);
+            const response = await api.post('books', formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
 
             alert(`Novo livro na estante:\n\n${response.data.title}`);
+            myForm.reset();
+            console.log(formData.data);
         } catch (err) {
-            alert(err);
+            alert('Falha no cadastro\n\nEscolha uma imagem com o formato:\npng\njpg\njpeg\ngif');
         }
     }
 
@@ -39,7 +37,7 @@ export default function NewBook() {
 
             <div className="content">
                 <section>
-                    <img src={logoImg} alt="My Books" />
+                    <img className="imag" src={logoImg} alt="My Books" />
 
                     <h1>Cadastrar novo livro</h1>
                     <p>Digite os dados do novo livro ao lado</p>
@@ -50,37 +48,27 @@ export default function NewBook() {
                     </Link>
                 </section>
 
-                <form onSubmit={handleBook}>
-                    <input
-                        placeholder="Titulo"
-                        value={title}
-                        required
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                    <input
-                        placeholder="Autor"
-                        value={author}
-                        required
-                        onChange={e => setAuthor(e.target.value)}
-                    />
-                    <input
-                        placeholder="Nacionalidade"
-                        value={nationality}
-                        required
-                        onChange={e => setNationality(e.target.value)}
-                    />
-                    <input
-                        placeholder="Ano"
-                        value={year}
-                        required
-                        onChange={e => setYear(e.target.value)}
-                    />
+                <form onSubmit={handleBook} id="myForm" name="myForm">
+                    <input placeholder="Título:" type="text" id="author" name="title" required />
+                    <input placeholder="Autor:" type="text" id="author" name="author" required />
+                    <input placeholder="País:" type="text" id="nationality" name="nationality" required />
+                    <input placeholder="Ano:" type="number" id="year" name="year" required />
+                    <container className="status">
+                        <label htmlFor="read">Já leu?</label>
+                        <select className="read" name="read">
+                            <option selected value="false">Não lido</option>
+                            <option value="true">Lido</option>
+                        </select>
+                    </container>
+                    <container className="capa">
+                        <label htmlFor="ima">Capa:</label>
+                        <input className="ima" type="file" id="imageurl" name="imageurl" />
+                    </container>
 
-                    <button className="button" type="submit">Cadastrar</button>
 
+                    <input className="sub" type="submit" value="Cadastrar" />
                 </form>
             </div>
-
         </div>
     );
 }

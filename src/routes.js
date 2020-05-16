@@ -7,6 +7,7 @@ import Logon from './pages/Logon';
 import Register from './pages/Register';
 import Library from './pages/Library';
 import NewBook from './pages/NewBook';
+import Detail from './pages/Detail';
 
 export function PrivateRoute({ component: Component, ...rest }) {
     return (
@@ -31,6 +32,7 @@ export default function Routes() {
                 <PrivateRoute path="/library" component={Library} />
                 {/* <Route path="/incidents/new" component={NewIncident} /> */}
                 <PrivateRoute path="/books/new" component={NewBook} />
+                <PrivateRoute path="/detail/:id" component={Detail} />
             </Switch>
         </BrowserRouter>
     );

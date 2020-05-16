@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
+import { FiPower, FiEdit } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -10,7 +10,7 @@ import logoImg from '../../assets/logo.png';
 
 export default function Library() {
     const [book, setBook] = useState([]);
-    let lido = "";
+    const history = useHistory();
 
     useEffect(() => {
         api.get('books').then(response => {
@@ -18,10 +18,9 @@ export default function Library() {
         })
     }, []);
 
-    if (book.read === true) {
-        lido = "Lido";
-    } else {
-        lido = "Não lido"
+    function handleEdit(id) {
+        history.push(`/detail/${id}`);
+        
     }
 
     return (
@@ -29,9 +28,9 @@ export default function Library() {
             <header>
                 <img src={logoImg} alt="My Books" />
 
-                <Link className="button" to='/books/new'>Cadastrar book</Link>
+                <Link className="buttonBook" to='/books/new'>Cadastrar book</Link>
 
-                <Link className="button" to='/register'>Cadastrar usuário</Link>
+                <Link className="buttonUser" to='/register'>Cadastrar usuário</Link>
                 <button type="button">
                     <FiPower size={18} color="#f49e00" />
                 </button>
@@ -43,21 +42,23 @@ export default function Library() {
 
             <ul>
                 {book.map(book => (
-
                     <li key={book.id}>
+
                         <section>
                             <img className="capa" src={book.imageurl} alt="imagem" />
                         </section>
+
                         <section>
                             <p>{book.title}</p>
                             <p>{book.year}</p>
                             <p>{book.author}</p>
-                            <p>{lido}</p>
+                            <p>{(book.read === true) ? "Lido" : "Não lido"}</p>
                         </section>
 
-                        <button type="button">
-                            <FiTrash2 size={20} color="#a8a8b3" />
+                        <button onClick={() => handleEdit(book.id)} type="button">
+                            <FiEdit size={20} color="#a8a8b3" />
                         </button>
+
                     </li>
                 ))}
             </ul>
