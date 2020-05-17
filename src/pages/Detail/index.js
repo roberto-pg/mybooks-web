@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiCheckCircle } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -44,37 +44,45 @@ export default function Detail(props) {
     return (
         <div className="detail-container">
             <div className="content">
-               
+
                 <section className="secImg">
                     <img className="livro" src={book.imageurl} alt="livro" />
                 </section>
-               
-                <section className="secDados">     
-                    
+
+                <section className="secDados">
+
                     <div className="dados">
                         <p>{book.title}</p>
                         <p>{book.author}</p>
                         <p>{book.nationality}</p>
                         <p>{book.year}</p>
-                        <p>{book.read}</p>
+                        <div className="leitura">
+                            <p>Status:</p>
+                            <p>{(book.read === true) ? "Lido" : "Não lido"}</p>
+                        </div>
                         <container className="status">
-                            <label htmlFor="read">Leu o livro?</label>
+                            <label htmlFor="read">Alterar Status:</label>
                             <select className="leitura" value={status} onChange={e => setStatus(e.target.value)}>
                                 <option></option>
                                 <option value="true">Sim</option>
                                 <option value="false">Não</option>
                             </select>
+                            <div className="alterar">
+                                <button onClick={''} type="button">
+                                    <FiCheckCircle size={18} color="#f49e00" />
+                                </button>
+                                {/* <input onClick={() => {
+                                    if (window.confirm('Tem certeza que quer alterar este livro?')) handleStatus()
+                                }}
+                                    className="detail"
+                                    type="submit"
+                                    value="Alterar"
+                                /> */}
+                            </div>
                         </container>
-                    </div>
-                    
-                    <div className="alterar">
-                        <input onClick={() => {
-                            if (window.confirm('Tem certeza que quer alterar este livro?')) handleStatus()
-                        }}
-                            className="detail"
-                            type="submit"
-                            value="Alterar"
-                        />
+
+
+
                         <input onClick={() => {
                             if (window.confirm('Tem certeza que quer excluir este livro?')) handleDelete(book.id)
                         }}

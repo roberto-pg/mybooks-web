@@ -52,6 +52,15 @@
     font-weight: 500;
 }
 
+.dados .leitura {
+    display: flex;
+}
+
+.dados .leitura p + p {
+    color: #e02041;
+    margin-left: 85px;
+}
+
 .dados .status {
     padding-left: 20px;
     font-size: 18px;

@@ -28,7 +28,6 @@ export default function NewBook() {
             alert(`Novo livro na estante:\n\n${response.data.title}`);
             myForm.reset();
             history.push('/library')
-            console.log(formData.data);
         } catch (err) {
             alert('Falha no cadastro\n\nEscolha uma imagem com o formato:\npng\njpg\njpeg\ngif');
         }
