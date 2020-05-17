@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -8,6 +8,7 @@ import './styles.css';
 import logoImg from '../../assets/logo.png';
 
 export default function NewBook() {
+    const history = useHistory();
 
     async function handleBook(e) {
         e.preventDefault();
@@ -26,6 +27,7 @@ export default function NewBook() {
 
             alert(`Novo livro na estante:\n\n${response.data.title}`);
             myForm.reset();
+            history.push('/library')
             console.log(formData.data);
         } catch (err) {
             alert('Falha no cadastro\n\nEscolha uma imagem com o formato:\npng\njpg\njpeg\ngif');

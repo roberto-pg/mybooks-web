@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiEdit } from 'react-icons/fi';
 
 import api from '../../services/api';
+import { logout } from '../../services/auth';
 
 import './styles.css';
 
@@ -20,7 +21,12 @@ export default function Library() {
 
     function handleEdit(id) {
         history.push(`/detail/${id}`);
-        
+
+    }
+
+    function handleLogout() {
+        logout();
+        history.push('/')
     }
 
     return (
@@ -31,7 +37,7 @@ export default function Library() {
                 <Link className="buttonBook" to='/books/new'>Cadastrar book</Link>
 
                 <Link className="buttonUser" to='/register'>Cadastrar usuário</Link>
-                <button type="button">
+                <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#f49e00" />
                 </button>
 

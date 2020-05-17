@@ -58,6 +58,10 @@
     font-weight: 500;
 }
 
+.dados .status .leitura {
+    margin-left: 72px;
+}
+
 .detail-container .content .secDados .alterar {
     padding-top: 20px;
     display: flex;
