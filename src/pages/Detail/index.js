@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
-import { FiArrowLeft, FiCheckCircle } from 'react-icons/fi';
+import { FiArrowLeft, FiCheckCircle, FiTrash2 } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -10,6 +10,7 @@ export default function Detail(props) {
     let { id } = props.match.params;
     const [book, setBook] = useState([]);
     const [status, setStatus] = useState('');
+    const [image, setImage] = useState('');
     const history = useHistory();
 
     useEffect(() => {
@@ -41,12 +42,33 @@ export default function Detail(props) {
         }
     }
 
+    async function handleCover(e) {
+        var formData = new FormData();
+        formData.append('imageurl', image);
+
+        try {
+            await api.put(`/books/image/${id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+            )
+            history.push('/library')
+        } catch (err) {
+            alert('Erro ao alterar a capa do livro');
+        }
+    }
+
     return (
         <div className="detail-container">
             <div className="content">
 
                 <section className="secImg">
                     <img className="livro" src={book.imageurl} alt="livro" />
+                    <Link className="back-link" to="/library">
+                        <FiArrowLeft size={16} color="#e02041" />
+                        Voltar para Minha Estante
+                    </Link>
                 </section>
 
                 <section className="secDados">
@@ -61,41 +83,38 @@ export default function Detail(props) {
                             <p>{(book.read === true) ? "Lido" : "Não lido"}</p>
                         </div>
                         <container className="status">
-                            <label htmlFor="read">Alterar Status:</label>
+                            <label htmlFor="read">Mudar Status:</label>
                             <select className="leitura" value={status} onChange={e => setStatus(e.target.value)}>
                                 <option></option>
                                 <option value="true">Sim</option>
                                 <option value="false">Não</option>
                             </select>
                             <div className="alterar">
-                                <button onClick={''} type="button">
-                                    <FiCheckCircle size={18} color="#f49e00" />
-                                </button>
-                                {/* <input onClick={() => {
+                                <button className="altStatus" onClick={() => {
                                     if (window.confirm('Tem certeza que quer alterar este livro?')) handleStatus()
-                                }}
-                                    className="detail"
-                                    type="submit"
-                                    value="Alterar"
-                                /> */}
+                                }} type="button">
+                                    <FiCheckCircle size={18} color="#e02041" />
+                                </button>
                             </div>
                         </container>
+                        <container className="capa">
+                            <label className="labelCapa" htmlFor="ima">Trocar capa:</label>
 
 
+                            {/* <input onChange={onChangeImage} className="ima" type="file" id="imageurl" name="imageurl" />
+                            <button onClick={handleCover} className="altCapa" type="button"><FiCheckCircle size={18} color="#e02041" /></button> */}
 
-                        <input onClick={() => {
+                            <input onChange={e => setImage(e.target.files[0])} className="ima" type="file" id="imageurl" name="imageurl" />
+                            <button onClick={handleCover} className="altCapa" type="button"><FiCheckCircle size={18} color="#e02041" /></button>
+                        </container>
+                        <Link onClick={() => {
                             if (window.confirm('Tem certeza que quer excluir este livro?')) handleDelete(book.id)
-                        }}
-                            className="delete"
-                            type="submit"
-                            value="Deletar"
-                        />
+                        }} className="back-link">
+                            <FiTrash2 size={18} color="#e02041" />
+                        Excluir o livro da coleção
+                    </Link>
                     </div>
 
-                    <Link className="back-link" to="/library">
-                        <FiArrowLeft size={16} color="#e02041" />
-                        Voltar para Minha Estante
-                    </Link>
                 </section>
             </div>
         </div >

@@ -20,13 +20,9 @@
 }
 
 .detail-container .content .secImg {
-    width: 100%;
-    max-width: 320px;
-    height: 500px;
-    display: flex;
+    display: inline;
     justify-content: center;
     align-items: center;
-    /* background-color: lightcoral; */
 }
 
 .detail-container .content .secImg .livro {
@@ -36,13 +32,8 @@
 
 .detail-container .content .secDados {
     width: 100%;
-    max-width: 640px;
+    max-width: 700px;
     height: 500px;
-    /* background-color: lightcoral; */
-}
-
-.dados {
-    padding-top: 20px;
 }
 
 .dados p {
@@ -56,9 +47,9 @@
     display: flex;
 }
 
-.dados .leitura p + p {
+.dados .leitura p+p {
     color: #e02041;
-    margin-left: 85px;
+    margin-left: 65px;
 }
 
 .dados .status {
@@ -68,60 +59,72 @@
 }
 
 .dados .status .leitura {
-    margin-left: 72px;
+    margin-left: 28px;
 }
 
-.detail-container .content .secDados .alterar {
-    padding-top: 20px;
+.dados .status .alterar {
+    margin-left: 252px;
     display: flex;
 }
 
-.alterar .detail {
-   margin-right: 45px;
-   margin-left: 20px;
-    width: 120px;
+.altStatus {
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: transparent;
+    margin-left: 16px;
+    transition: border-color 0.2s;
+}
+
+.altStatus:hover {
+    border-color: #999;
+}
+
+.dados .capa {
+    padding-left: 20px;
+    display: flex;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.dados .capa .labelCapa {
+    padding-top: 16px;
+}
+
+.dados .capa .ima {
+    width: 50%;
     height: 60px;
-    background: #f49e00;
-    /* background: #e02041; */
     border: 0;
-    
-    border-radius: 8px;
-    font-weight: 700;
-    margin-top: 16px;
+    /* margin-top: 16px; */
+    padding-left: 40px;
+    display: flex;
     text-align: center;
     text-decoration: none;
     font-size: 18px;
-    line-height: 60px;
     transition: filter 0.2s;
     cursor: pointer;
 }
 
-.alterar .detail:hover {
-    filter: brightness(90%);
-}
-
-.alterar .delete {
-    width: 120px;
-    height: 60px;
-    background: #f49e00;
-    /* background: #e02041; */
-    border: 0;
-    border-radius: 8px;
-    font-weight: 700;
+.dados .capa .altCapa {
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: transparent;
+    margin-left: 30px;
+    transition: border-color 0.2s;
     margin-top: 16px;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 60px;
-    transition: filter 0.2s;
-    cursor: pointer;
 }
 
-.alterar .delete:hover {
-    filter: brightness(90%);
+.dados .capa .altCapa:hover {
+    border-color: #999;
 }
 
-.back-link {
-margin-left: 20px;
+.dados .back-link {
+    font-style: italic;
+    font-size: 16px;
+    color: #e02041;
+    padding-left: 18px;
+    padding-top: 13px;
 }
