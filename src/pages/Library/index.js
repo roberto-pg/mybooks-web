@@ -11,17 +11,18 @@ import logoImg from '../../assets/logo.png';
 
 export default function Library() {
     const [book, setBook] = useState([]);
+    const [total, setTotal] = useState(0);
     const history = useHistory();
 
     useEffect(() => {
         api.get('books').then(response => {
             setBook(response.data.data);
+            setTotal(response.headers['x-total-count']);
         })
     }, []);
 
     function handleEdit(id) {
         history.push(`/detail/${id}`);
-
     }
 
     function handleLogout() {
@@ -32,7 +33,7 @@ export default function Library() {
     return (
         <div className="library-container">
             <header>
-                <img src={logoImg} alt="My Books" />
+                <img className="logo" src={logoImg} alt="My Books" />
 
                 <Link className="buttonBook" to='/books/new'>Cadastrar book</Link>
 
@@ -42,9 +43,10 @@ export default function Library() {
                 </button>
 
             </header>
-
-            <h1>Minha Estante</h1>
-
+            <header>
+                <h1>Minha Estante</h1>
+                <h4>Total de livros: {total}</h4>
+            </header>
 
             <ul>
                 {book.map(book => (

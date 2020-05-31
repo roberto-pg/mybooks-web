@@ -99,11 +99,6 @@ export default function Detail(props) {
                         </container>
                         <container className="capa">
                             <label className="labelCapa" htmlFor="ima">Trocar capa:</label>
-
-
-                            {/* <input onChange={onChangeImage} className="ima" type="file" id="imageurl" name="imageurl" />
-                            <button onClick={handleCover} className="altCapa" type="button"><FiCheckCircle size={18} color="#e02041" /></button> */}
-
                             <input onChange={e => setImage(e.target.files[0])} className="ima" type="file" id="imageurl" name="imageurl" />
                             <button onClick={handleCover} className="altCapa" type="button"><FiCheckCircle size={18} color="#e02041" /></button>
                         </container>
