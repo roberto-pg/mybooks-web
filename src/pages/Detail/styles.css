@@ -1,0 +1,130 @@
+.detail-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-container .content {
+    width: 100%;
+    padding: 50px 50px;
+    background: #f0f0f5;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-container .content .secImg {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-container .content .secImg .livro {
+    width: 100%;
+    max-width: 300px;
+}
+
+.detail-container .content .secDados {
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+}
+
+.dados p {
+    padding-bottom: 40px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.dados .leitura {
+    display: flex;
+}
+
+.dados .leitura p+p {
+    color: #e02041;
+    margin-left: 65px;
+}
+
+.dados .status {
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.dados .status .leitura {
+    margin-left: 28px;
+}
+
+.dados .status .alterar {
+    margin-left: 252px;
+    display: flex;
+}
+
+.altStatus {
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: transparent;
+    margin-left: 16px;
+    transition: border-color 0.2s;
+}
+
+.altStatus:hover {
+    border-color: #999;
+}
+
+.dados .capa {
+    padding-left: 20px;
+    display: flex;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.dados .capa .labelCapa {
+    padding-top: 16px;
+}
+
+.dados .capa .ima {
+    width: 50%;
+    height: 60px;
+    border: 0;
+    /* margin-top: 16px; */
+    padding-left: 40px;
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: filter 0.2s;
+    cursor: pointer;
+}
+
+.dados .capa .altCapa {
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: transparent;
+    margin-left: 30px;
+    transition: border-color 0.2s;
+    margin-top: 16px;
+}
+
+.dados .capa .altCapa:hover {
+    border-color: #999;
+}
+
+.dados .back-link {
+    font-style: italic;
+    font-size: 16px;
+    color: #e02041;
+    padding-left: 18px;
+    padding-top: 13px;
+}

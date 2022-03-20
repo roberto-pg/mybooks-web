@@ -1,0 +1,117 @@
+.new-book-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-book-container .content {
+    width: 100%;
+    padding: 30px 30px;
+    background: #f3f0f5;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-book-container .content section {
+    width: 100%;
+    max-width: 380px;
+    height: 500px;
+}
+
+.new-book-container .content section .imag {
+    margin-top: 8px;
+}
+
+.new-book-container .content section h1 {
+    margin: 64px 0 32px;
+    font-size: 32px;
+}
+
+.new-book-container .content section p {
+    font-size: 18px;
+    color: #737380;
+    line-height: 32px;
+}
+
+.new-book-container .content form {
+    width: 100%;
+    max-width: 450px;
+    height: 500px;
+}
+
+.new-book-container .content form input {
+    margin-top: 8px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 10px;
+    padding-right: 40px;
+}
+
+.read {
+    width: 130px;
+    height: 30px;
+    border: 1;
+    margin-left: 75px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: filter 0.2s;
+    cursor: pointer;
+}
+
+.capa {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.ima {
+    width: 100%;
+    height: 60px;
+    border: 0;
+    margin-top: 16px;
+    padding-left: 90px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    transition: filter 0.2s;
+    cursor: pointer;
+}
+
+.sub {
+    width: 100%;
+    height: 60px;
+    background: #f49e00;
+    /* background: #e02041; */
+    border: 0;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    transition: filter 0.2s;
+    cursor: pointer;
+}
+
+.sub:hover {
+    filter: brightness(90%);
+}
