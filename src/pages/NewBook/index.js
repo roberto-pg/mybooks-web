@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo.png';
 import api from '../../services/api';
 import './styles.css';
@@ -8,7 +8,7 @@ import './styles.css';
 
 
 export default function NewBook() {
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   async function handleBook(e) {
     e.preventDefault();
@@ -26,7 +26,7 @@ export default function NewBook() {
       );
       alert(`Novo livro na estante:\n\n${response.data.title}`);
       myForm.reset();
-      navigate.push('/library')
+      navigate('/library')
     } catch (err) {
       alert('Falha no cadastro\n\nEscolha uma imagem com o formato:\npng\njpg\njpeg\ngif');
     }

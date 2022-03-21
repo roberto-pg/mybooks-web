@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { FiArrowLeft, FiCheckCircle, FiTrash2 } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import api from '../../services/api';
 import './styles.css';
 
 
 
-export default function Detail(props) {
-  let { id } = props.match.params;
+export default function Detail() {
+  let { id } = useParams();
   const [book, setBook] = useState([]);
   const [status, setStatus] = useState('');
   const [image, setImage] = useState('');
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get(`books/${id}`).then(response => {
@@ -22,7 +22,7 @@ export default function Detail(props) {
   async function handleDelete() {
     try {
       await api.delete(`books/${id}`)
-      navigate.push('/library')
+      navigate('/library')
     } catch (err) {
       alert('Erro ao deletar o livro');
     }
@@ -34,9 +34,8 @@ export default function Detail(props) {
         alert('Escolha o Status de leitura')
       } else {
         const data = { read: status };
-        console.log(data)
         await api.patch(`books/${id}`, data);
-        navigate.push('/library')
+        navigate('/library')
       }
     } catch (err) {
       alert('Erro ao alterar o status de leitura');
@@ -54,7 +53,7 @@ export default function Detail(props) {
         }
       }
       )
-      navigate.push('/library')
+      navigate('/library')
     } catch (err) {
       alert('Erro ao alterar a capa do livro');
     }
@@ -83,7 +82,7 @@ export default function Detail(props) {
               <p>Status:</p>
               <p>{(book.read === true) ? "Lido" : "Não lido"}</p>
             </div>
-            <container className="status">
+            <div className="status">
               <label htmlFor="read">Mudar Status:</label>
               <select className="leitura" value={status} onChange={e => setStatus(e.target.value)}>
                 <option></option>
@@ -97,18 +96,18 @@ export default function Detail(props) {
                   <FiCheckCircle size={18} color="#e02041" />
                 </button>
               </div>
-            </container>
-            <container className="capa">
+            </div>
+            <div className="capa">
               <label className="labelCapa" htmlFor="ima">Trocar capa:</label>
               <input onChange={e => setImage(e.target.files[0])} className="ima" type="file" id="imageurl" name="imageurl" />
               <button onClick={handleCover} className="altCapa" type="button"><FiCheckCircle size={18} color="#e02041" /></button>
-            </container>
-            <Link onClick={() => {
+            </div>
+            <div className="back-link" onClick={() => {
               if (window.confirm('Tem certeza que quer excluir este livro?')) handleDelete(book.id)
-            }} className="back-link">
+            }}>
               <FiTrash2 size={18} color="#e02041" />
               Excluir o livro da coleção
-            </Link>
+            </div>
           </div>
 
         </section>

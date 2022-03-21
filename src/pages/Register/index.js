@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo.png';
 import api from '../../services/api';
 import { logout } from '../../services/auth';
@@ -11,7 +11,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -26,7 +26,7 @@ export default function Register() {
 
 
       alert(`Cadastro efetuado com sucesso\nPara acesso utilize o email: ${response.data.user.email}`);
-      navigate.push('/');
+      navigate('/');
     } catch (err) {
       alert('Erro no cadastro, tente novamente');
     }

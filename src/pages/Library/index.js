@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiEdit, FiPower } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/logo.png';
 import api from '../../services/api';
 import { logout } from '../../services/auth';
@@ -12,7 +12,7 @@ import './styles.css';
 export default function Library() {
   const [book, setBook] = useState([]);
   const [total, setTotal] = useState(0);
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get('books').then(response => {
@@ -22,12 +22,12 @@ export default function Library() {
   }, []);
 
   function handleEdit(id) {
-    navigate.push(`/detail/${id}`);
+    navigate(`/detail/${id}`);
   }
 
   function handleLogout() {
     logout();
-    navigate.push('/')
+    navigate('/')
   }
 
   return (

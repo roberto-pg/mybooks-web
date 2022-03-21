@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import capaImg from '../../assets/capa.jpg';
 import logoImg from '../../assets/logo.png';
 import api from '../../services/api';
@@ -11,7 +11,7 @@ import './styles.css';
 export default function Logon() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   async function handleLogon(e) {
     e.preventDefault();
@@ -22,7 +22,7 @@ export default function Logon() {
       const response = await api.post('authenticate', data)
       login(response.data.user.token);
 
-      navigate.push('/library');
+      navigate('/library');
       alert(`Você está logado como: ${email}`)
     } catch (err) {
       alert(err)
@@ -47,7 +47,7 @@ export default function Logon() {
             type="password"
             placeholder="Senha"
             value={password}
-            minlength="6"
+            minLength="6"
             required
             onChange={e => setPassword(e.target.value)}
           />
